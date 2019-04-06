@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=11">
+		<meta name="application-name" content="Minecraft Blacklist">
+		<meta name="msapplication-TileColor" content="#F1F1F1">
+		<meta name="description" content="轻松生成属于你的 Youtube 风格 Logo">
+		<meta name="keywords" content="Youtube Logo,Youtube 图标,生成器,Logo">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" crossorigin="anonymous">
+		<title>YouTube Logo</title>
+		<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" type="5fca8a9aee21829ca4e68b4a-text/javascript"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" crossorigin="anonymous" type="5fca8a9aee21829ca4e68b4a-text/javascript"></script>
+		<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+		<style type="text/css">*{transition-duration: 0.5s;}.thread img{vertical-align:text-bottom ! important;max-width:100% ! important;margin-top:8px;margin-bottom:8px;max-height:170px ! important;}.thread table{display:block;width:100%;overflow:auto;margin-bottom:8px;}.thread table tr{background-color:#fff;border-top:1px solid #c6cbd1;}.thread table tr:nth-child(2n){background-color:#f6f8fa;}.thread table th,.thread table td{padding:6px 13px;border:1px solid #dfe2e5;font-size:14px;}.thread pre{margin-bottom:16px;}pre{border:none ! important;}blockquote{font-size:15px ! important;}
+			#youtube-bg {
+				background: rgb(238,28,27);
+				width: 480px;
+				height: 480px;
+				margin-top: 32px;
+				position: fixed;
+				left: -99999px;
+			}
+			#you-text {
+				color: #FFFFFF;
+				font-size: 100px;
+			}
+			#tube-text {
+				color: rgb(238,28,27);
+				background: rgb(255,255,255);
+				border-radius: 16px;
+				padding: 8px;
+				font-size: 100px;
+			}
+			.text-line {
+				width: 100%;
+				height: 100%;
+			}
+			.text-line tr {
+				height: 100%;
+			}
+			.text-line tr td {
+				text-align: center;
+			}
+			#child {
+				margin-top: 32px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<h2>YouTube Logo</h2>
+					<p>自定义你的 YouTube 风格 Logo</p>
+					<hr>
+				</div>
+				<div class="col-sm-6">
+					<p>左侧字体内容</p>
+					<p><input type="text" id="you" value="You" class="form-control" /></p>
+				</div>
+				<div class="col-sm-6">
+					<p>右侧字体内容</p>
+					<p><input type="text" id="tube" value="Tube" class="form-control" /></p>
+				</div>
+				<div class="col-sm-3">
+					<p>字体大小(px)</p>
+					<p><input type="number" id="fontsize" value="100" class="form-control" /></p>
+				</div>
+				<div class="col-sm-3">
+					<p>加粗字体</p>
+					<p><select class="form-control" id="bold">
+						<option value="bold" selected>启用</option>
+						<option value="300">禁用</option>
+					</select></p>
+				</div>
+				<div class="col-sm-3">
+					<p>背景宽度(px)</p>
+					<p><input type="number" id="bgwidth" value="480" class="form-control" /></p>
+				</div>
+				<div class="col-sm-3">
+					<p>背景高度(px)</p>
+					<p><input type="number" id="bgheight" value="480" class="form-control" /></p>
+				</div>
+				<div class="col-sm-3">
+					<p>背景颜色</p>
+					<p><input type="text" id="bgcolor" value="rgb(238,28,27)" class="form-control" /></p>
+				</div>
+				<div class="col-sm-3">
+					<p>右侧背景</p>
+					<p><input type="text" id="rightbgcolor" value="#FFFFFF" class="form-control" /></p>
+				</div>
+				<div class="col-sm-3">
+					<p>左侧颜色</p>
+					<p><input type="text" id="leftcolor" value="#FFFFFF" class="form-control" /></p>
+				</div>
+				<div class="col-sm-3">
+					<p>右侧颜色</p>
+					<p><input type="text" id="rightcolor" value="rgb(238,28,27)" class="form-control" /></p>
+				</div>
+				<div class="col-sm-12">
+					<div id="youtube-bg">
+						<table class="text-line">
+							<tr>
+								<td>
+									<span id="you-text">You</span>
+									<span id="tube-text">Tube</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<center id="child"></center>
+					<center style="margin-top: 32px;">
+						<p><button class="btn btn-primary" onclick="download(saveAsPNG(canvasObj))">点击下载图片</button></p>
+						<p>你也可以右键另存为或复制到剪切板</p>
+					</center>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var canvasObj;
+			window.onload = function() {
+				setInterval(function() {
+					document.getElementById("you-text").innerHTML = you.value;
+					document.getElementById("you-text").style.fontWeight = bold.value;
+					document.getElementById("you-text").style.color = leftcolor.value;
+					document.getElementById("tube-text").innerHTML = tube.value;
+					document.getElementById("tube-text").style.fontWeight = bold.value;
+					document.getElementById("tube-text").style.color = rightcolor.value;
+					document.getElementById("tube-text").style.background = rightbgcolor.value;
+					document.getElementById("you-text").style.fontSize = fontsize.value + "px";
+					document.getElementById("tube-text").style.fontSize = fontsize.value + "px";
+					document.getElementById("youtube-bg").style.width = bgwidth.value + "px";
+					document.getElementById("youtube-bg").style.height = bgheight.value + "px";
+					document.getElementById("youtube-bg").style.backgroundColor = bgcolor.value;
+					html2canvas(document.querySelector("#youtube-bg")).then(canvas => {
+						canvasObj = canvas;
+						child.innerHTML = "";
+						child.appendChild(canvas);
+					});
+				}, 1000);
+			}
+			function saveAsPNG(canvas) {
+				return canvas.toDataURL("image/png");
+			}
+			function download(url){
+				var oA = document.createElement("a");
+				oA.download = 'Logo_' + clearText(you.value + tube.value) + '-' + fontsize.value + '-' + bgwidth.value + 'x' + bgheight.value + 'px.png';
+				oA.href = url;
+				document.body.appendChild(oA);
+				oA.click();
+				oA.remove();
+			}
+			function clearText(str) {
+				return str.replace("/", "_").replace("\\", "_").replace(":", "_").replace("*", "_").replace("?", "_").replace("<", "_").replace(">", "_").replace("|", "_");
+			}
+		</script>
+	</body>
+</html>
