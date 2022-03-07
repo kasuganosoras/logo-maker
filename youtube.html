@@ -65,8 +65,12 @@
 					<p><input type="text" id="tube" value="Tube" class="form-control" /></p>
 				</div>
 				<div class="col-sm-3">
-					<p>字体大小(px)</p>
-					<p><input type="number" id="fontsize" value="100" class="form-control" /></p>
+					<p>左侧字体大小(px)</p>
+					<p><input type="number" id="youfontsize" value="100" class="form-control" /></p>
+				</div>
+				<div class="col-sm-3">
+					<p>右侧字体大小(px)</p>
+					<p><input type="number" id="tubefontsize" value="100" class="form-control" /></p>
 				</div>
 				<div class="col-sm-3">
 					<p>加粗字体</p>
@@ -129,8 +133,8 @@
 					document.getElementById("tube-text").style.fontWeight = bold.value;
 					document.getElementById("tube-text").style.color = rightcolor.value;
 					document.getElementById("tube-text").style.background = rightbgcolor.value;
-					document.getElementById("you-text").style.fontSize = fontsize.value + "px";
-					document.getElementById("tube-text").style.fontSize = fontsize.value + "px";
+					document.getElementById("you-text").style.fontSize = youfontsize.value + "px";
+					document.getElementById("tube-text").style.fontSize = tubefontsize.value + "px";
 					document.getElementById("youtube-bg").style.width = bgwidth.value + "px";
 					document.getElementById("youtube-bg").style.height = bgheight.value + "px";
 					document.getElementById("youtube-bg").style.backgroundColor = bgcolor.value;
@@ -146,7 +150,7 @@
 			}
 			function download(url){
 				var oA = document.createElement("a");
-				oA.download = 'Logo_' + clearText(you.value + tube.value) + '-' + fontsize.value + '-' + bgwidth.value + 'x' + bgheight.value + 'px.png';
+				oA.download = 'Logo_' + clearText(you.value + tube.value) + '-' + youfontsize.value + '-' + bgwidth.value + 'x' + bgheight.value + 'px.png';
 				oA.href = url;
 				document.body.appendChild(oA);
 				oA.click();
